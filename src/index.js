@@ -1,5 +1,5 @@
-const express = require('express');
-const axios = require('axios');
+import express from 'express';
+import { dataHandler } from './services/dataHandler';
 
 const app = express();
 
@@ -10,31 +10,35 @@ app.use(express.json());
 app.get("/search", async(request, response)=>{
     const countries = ["argentina","brazil","chile","colombia","paraguay","peru","suriname","uruguay"];
     const result = await axios.get("http://universities.hipolabs.com/search");
-    let coursesByChoseCountries = [];
     const allCourses = result.data;
-        allCourses.map((college,index,collection) => {
-            let collegesByCountry = collection.filter(college.country.toLowerCase() === countries)   
-        coursesByChoseCountries.push(collegesByCountry)
-        });
+    const coursesByChoseCountries = allCourses.filter(college => {
+        let country = college.country.toLowerCase();
+        return country === countries.find(item => item === country);
+    })      
       
-    if (allCourses){
-        return response.status(200).json(allCourses);
+    if (coursesByChoseCountries){
+        return response.status(200).json(coursesByChoseCountries);
     } else {
-        return response.status(400).json("Error");
+        return response.status(400).json("Error to get courses");
     }
 })
 
 app.get("/search/:country", async(request, response)=>{
+    const { country } = request.query;
+        
+    const allCourses = await axios.get(`http://universities.hipolabs.com/search?country=${country}`);
     
-    const allCourses = await axios.get(`http://universities.hipolabs.com/search?country=${'argentina'}`);
-    console.log(typeof(allCourses.data))
     if (allCourses){
         return response.json(allCourses.data);
     } else {
-        return response.status(400).json("Error");
+        return response.status(400).json("Error to get courses");
     }
 })
+
+app.post("/insertAll", dataHandler());
 
 app.listen(port, ()=>{
     console.log(`Server running on port ${port}`);
 });
+
+
