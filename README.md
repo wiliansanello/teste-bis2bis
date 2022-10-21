@@ -28,6 +28,7 @@ A seguir, é detalhada a estrutura do projeto:
 
 ```
 src: pasta que contém todos os códigos
+--jobs: são scripts executados em segundo plano em um determinado momento da aplicação.
 --routes: guarda os arquivos que contém as rotas da aplicação, a serem utilizadas por um roteador chamado por um middleware no script inicial da aplicação (index.js).
 --services: contém as regras de negócio da aplicação
 ```
@@ -37,7 +38,7 @@ src: pasta que contém todos os códigos
 ```
 / : É a rota inicial da aplicação. Ao ser carregada, ela checa se as vagas da API já foram armazenadas no banco de dados. Se não foram, o banco será alimentado com os dados obtidos pela API.
 /universities: Esta rota é chamada em diversos momentos da aplicação, de acordo com os métodos utilizados:
-    * GET: lista todas as universidades cadastradas, e de uma específica quando é informado o id da mesma;
+    * GET: lista todas as universidades cadastradas, lista todas as universidades de um país passada como query param, e lista uma específica quando é informado o id da mesma no query param;
     * POST: insere uma universidade
     * PUT: Altera os dados de uma universidade
     * DELETE: Remove uma universidade

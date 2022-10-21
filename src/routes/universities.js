@@ -3,10 +3,10 @@ import { ObjectId } from "mongodb";
 
 import { 
     client, 
-    findAllCourses, 
-    findCourseByParameter, 
-    insertCourses,
-    updateOneCourse, 
+    findAllUniversities, 
+    findUniversitiesByParameter, 
+    insertUniversities,
+    updateOneUniversity, 
     deleteUniversity, 
 } from "../services/db.js";
 
@@ -17,9 +17,9 @@ async function searchAllCourses (request, response){
     let coursesByChoseCountries;
     await client.connect(); 
     if (country) {
-        coursesByChoseCountries = await findAllCourses("courses", { country: country });
+        coursesByChoseCountries = await findAllUniversities("courses", { country: country });
     } else {
-        coursesByChoseCountries = await findAllCourses("courses");
+        coursesByChoseCountries = await findAllUniversities("courses");
     }  
     await client.close();  
     if (coursesByChoseCountries != ''){
@@ -32,7 +32,7 @@ async function searchAllCourses (request, response){
 async function searchById (request, response){
     const { _id } = request.params;
     await client.connect();
-    const courseById = await findCourseByParameter("courses",  {_id: ObjectId( _id )})
+    const courseById = await findUniversitiesByParameter("courses",  {_id: ObjectId( _id )})
     await client.close();
     if (courseById != ''){
         return response.status(200).json(courseById);
@@ -46,7 +46,7 @@ async function insertOne (request, response){
     if(university){
         await client.connect();
         try{
-            await insertCourses("courses",university);
+            await insertUniversities("courses",university);
             response.status(201).json({message: "Dados inseridos com sucesso."});
         } catch(err){
             response.status(400).json({message: `Houve erro na inserção: ${err}`});            
@@ -62,7 +62,7 @@ async function updateCourse (request, response){
     console.log(_id, university)
     await client.connect();
     try{
-        await updateOneCourse("courses",
+        await updateOneUniversity("courses",
         { _id: ObjectId( _id ) },
         {
             "web_pages": university.web_pages,

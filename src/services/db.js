@@ -9,13 +9,13 @@ export async function connect () {
     await client.connect();
 }
 
-export async function insertCourses(collectionName, doc) {
+export async function insertUniversities(collectionName, doc) {
     const db = client.db(process.env.DB_NAME);
     const result = await db.collection(collectionName).insertMany(doc);
     return result;
 }
 
-export async function findCourseByParameter(collectionName, info){
+export async function findUniversitiesByParameter(collectionName, info){
     const db = client.db(process.env.DB_NAME);
     const query = await db.collection(collectionName).find(info).toArray();
     const result = query.map(current => {
@@ -27,7 +27,7 @@ export async function findCourseByParameter(collectionName, info){
     
 }
 
-export async function findAllCourses(collectionName, info){
+export async function findAllUniversities(collectionName, info){
     const db = client.db(process.env.DB_NAME);
     const query = await db.collection(collectionName).find({...info}).toArray();
     const result = query.map(current => {
@@ -38,7 +38,7 @@ export async function findAllCourses(collectionName, info){
     return result; 
 }
 
-export async function updateOneCourse(collectionName, searchFor, updateTo){
+export async function updateOneUniversity(collectionName, searchFor, updateTo){
     console.log(searchFor, updateTo)
     const db = client.db(process.env.DB_NAME);
     const result = await db.collection(collectionName).updateOne(

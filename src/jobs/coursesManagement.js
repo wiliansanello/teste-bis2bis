@@ -3,7 +3,7 @@ import axios from 'axios';
 import { dataHandler } from '../services/dataHandler.js';
 import {client} from '../services/db.js';
 
-export async function filterCoursesList(){
+export async function filterUniversitiesList(){
    const countries = ["argentina","brazil","chile","colombia","paraguay","peru","suriname","uruguay"];
    const result = await axios.get("http://universities.hipolabs.com/search");
    const allCourses = result.data;
@@ -15,8 +15,8 @@ export async function filterCoursesList(){
    return coursesByChoseCountries;
 }
 
-export async function insertAllCourses(){
-    const coursesByChoseCountries = await filterCoursesList();
+export async function insertAllUniversities(){
+    const coursesByChoseCountries = await filterUniversitiesList();
      try {
         await dataHandler(coursesByChoseCountries);
         console.log ("Registros inseridos com sucesso.");
