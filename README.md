@@ -1,6 +1,6 @@
 # teste-bis2bis
 
-Desenvolvido por: Wílian Ansanello [https://linkedin.com/in/wiliansanello](LinkedIn)
+Desenvolvido por: Wílian Ansanello (https://linkedin.com/in/wiliansanello)[LinkedIn]
 
 ## Descrição 
 
