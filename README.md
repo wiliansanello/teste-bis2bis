@@ -1,4 +1,4 @@
-# teste-bis2bis
+# CRUD com Express, REST API, e MongoDB
 
 Desenvolvido por: Wílian Ansanello (https://linkedin.com/in/wiliansanello)[LinkedIn]
 
@@ -20,7 +20,7 @@ DB_URL=<url_do_banco_de_dados_(ex.:_mongodb://localhost/<porta>/<nome_banco>)>
 
 ## Instruções para executar a aplicação
 
-Com os requisitos necessários atendidos (vide sessão **Requisitos necessários para executar a aplicação**), basta executar o comando **npm run dev** para inicializar a aplicação.
+Com os requisitos necessários atendidos (vide sessão **Requisitos necessários para executar a aplicação**), é necessário executar o comando **npm install**, para que todas as dependências do projeto sejam instalados. Na sequência, executar o comando **npm run dev** para inicializar a aplicação.
 
 ## Estrutura do projeto
 

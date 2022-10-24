@@ -1,4 +1,4 @@
-import express from 'express';
+import express from 'express'; 
 
 import { client, findAllUniversities } from '../services/db.js';
 import { insertAllUniversities } from '../jobs/coursesManagement.js'

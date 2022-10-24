@@ -1,4 +1,4 @@
-import { insertUniversities, connect } from './db.js';
+import { insertUniversities, connect } from './db.js'; 
 
 export async function dataHandler (courses) {
     await connect();
